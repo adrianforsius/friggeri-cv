@@ -25,21 +25,22 @@
 \definecolor{purple}{HTML}{D3A4F9}
 \definecolor{red}{HTML}{FB4485}
 \definecolor{blue}{HTML}{6CE0F1}
+\definecolor{wine}{HTML}{A2033c}
 
 \ifdefined\@cv@print
-  \colorlet{green}{gray}
-  \colorlet{orange}{gray}
-  \colorlet{purple}{gray}
-  \colorlet{red}{gray}
-  \colorlet{blue}{gray}
-  \colorlet{fillheader}{white}
-  \colorlet{header}{gray}
+  \colorlet{green}{darkgray}
+  \colorlet{orange}{darkgray}
+  \colorlet{purple}{darkgray}
+  \colorlet{red}{darkgray}
+  \colorlet{blue}{darkgray}
+  \colorlet{filltitle}{white}
+  \colorlet{title}{darkgray}
 \else
-  \colorlet{fillheader}{gray}
-  \colorlet{header}{white}
+  \colorlet{filltitle}{darkgray}
+  \colorlet{title}{white}
 \fi
-\colorlet{textcolor}{gray}
-\colorlet{headercolor}{gray}
+\colorlet{textcolor}{darkgray}
+\colorlet{headercolor}{darkgray}
 
 %%%%%%%%%
 % Fonts %
@@ -71,12 +72,12 @@
 
 \newcommand{\header}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node [rectangle, fill=fillheader, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};
+    \node [rectangle, fill=filltitle, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};
     \node [anchor=center] (name) at (box) {%
-      \fontsize{36pt}{48pt}\color{header}\scshape #1%
+      \fontsize{36pt}{48pt}\color{title}\scshape #1%
     };
     \node [anchor=north] at (name.south) {%
-      \fontsize{14pt}{24pt}\color{header}%
+      \fontsize{14pt}{24pt}\color{title}%
       \thinfont #2%
     };
   \end{tikzpicture}
@@ -282,7 +283,8 @@
 \newcommand{\printbibsection}[2]{
   \begin{refsection}
     \nocite{*}
-    \printbibliography[sorting=chronological, type={#1}, title={#2}, heading=subbibliography]
+    \newrefcontext[sorting=chronological]
+    \printbibliography[type={#1}, title={#2}, heading=subbibliography]
   \end{refsection}
 }
 
