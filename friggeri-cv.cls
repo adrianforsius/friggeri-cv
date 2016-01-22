@@ -8,18 +8,17 @@
 \ProcessOptions\relax
 \LoadClass{article}
 
-
 %%%%%%%%%%
 % Colors %
 %%%%%%%%%%
 
 \RequirePackage{xcolor}
 
-\definecolor{white}{RGB}{255,255,255}
-
 \definecolor{darkgray}{HTML}{333333}
-\definecolor{gray}{HTML}{4D4D4D}
+\definecolor{gray}{HTML}{4C4C4C}
+\definecolor{silver}{HTML}{808080}
 \definecolor{lightgray}{HTML}{999999}
+\definecolor{white}{HTML}{FFFFFF}
 
 \definecolor{green}{HTML}{C2E15F}
 \definecolor{orange}{HTML}{FDA333}
@@ -49,14 +48,14 @@
 \RequirePackage[quiet]{fontspec}
 \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 
-\newfontfamily\bodyfont[]{Helvetica Neue}
-\newfontfamily\thinfont[]{Helvetica Neue UltraLight}
-\newfontfamily\headingfont[]{Helvetica Neue Condensed Bold}
+\newfontfamily\thinfont{Garamond Premr Pro}
+\newfontfamily\headingfont{Garamond Premr Pro Smbd}
 
 \defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Mapping=tex-text, Color=textcolor]{Helvetica Neue Light}
+\setmainfont[Mapping=tex-text, Color=textcolor, ItalicFont=Garamond Premr Pro It, BoldFont=Garamond Premr Pro Smbd]{Garamond Premr Pro}
+\setmonofont[Mapping=tex-text, ItalicFont=Garamond Premr Pro It, BoldFont=Garamond Premr Pro Smbd]{Garamond Premr Pro}
 
-\setmathfont{XITS Math}
+%% \setmathfont{XITS Math}
 
 %%%%%%%%%%
 % Header %
@@ -70,22 +69,20 @@
   \color{white}%
 }
 
-\newcommand{\header}[3]{%
+\newcommand{\header}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
     \node [rectangle, fill=fillheader, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};
     \node [anchor=center] (name) at (box) {%
-      \fontsize{40pt}{72pt}\color{header}%
-      {\thinfont #1}{\bodyfont  #2}
+      \fontsize{36pt}{48pt}\color{header}\scshape #1%
     };
     \node [anchor=north] at (name.south) {%
       \fontsize{14pt}{24pt}\color{header}%
-      \thinfont #3%
+      \thinfont #2%
     };
   \end{tikzpicture}
   \vspace{2.5cm}
   \vspace{-2\parskip}
 }
-
 
 %%%%%%%%%%%%%
 % Structure %
@@ -125,6 +122,8 @@
 
 \pagestyle{empty}
 
+\RequirePackage{enumitem}
+\setitemize{noitemsep, leftmargin=\parindent, labelindent=\parindent}
 
 %%%%%%%%%%%%%%%%%%%%
 % List environment %
@@ -148,6 +147,17 @@
     #4\vspace{\parsep}%
   }\\}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simple list environment %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\simpleentry}[3]{%
+  #1&\parbox[t]{11.8cm}{%
+    #2%
+    \hfill%
+    {\footnotesize\addfontfeature{Color=lightgray} #3}%
+    \vspace{\parsep}%
+  }\\}
 
 %%%%%%%%%%%%%%
 % Side block %
@@ -175,12 +185,15 @@
 % Bibliography %
 %%%%%%%%%%%%%%%%
 
-\RequirePackage[style=verbose, maxnames=99, sorting=ydnt]{biblatex}
+\RequirePackage[style=verbose, maxnames=99, backend=biber]{biblatex}
+\setlength\bibhang{0pt}
 
 \DeclareFieldFormat[article]{title}{#1\par}
 \DeclareFieldFormat[inproceedings]{title}{#1\par}
 \DeclareFieldFormat[misc]{title}{#1\par}
 \DeclareFieldFormat[report]{title}{#1\par}
+
+\def\newblock{\hskip 0pt plus 0pt minus 0pt}
 
 \DeclareBibliographyDriver{article}{%
   \printfield{title}%
@@ -196,7 +209,7 @@
     \newunit%
     \printlist{publisher}%
     \setunit*{\addcomma\space}%
-    \printfield{year}%
+    \printfield{doi}%
     \newunit%
   }
   \par\vspace{0.3\baselineskip}
@@ -277,8 +290,6 @@
   \sort[direction=descending]{\field{year}}
   \sort[direction=descending]{\field{month}}
 }
-
-
 
 %%%%%%%%%%%%%%%%
 % Other tweaks %
