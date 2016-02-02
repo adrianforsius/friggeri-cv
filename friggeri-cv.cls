@@ -53,7 +53,7 @@
 \newfontfamily\headingfont{Garamond Premr Pro Smbd}
 
 \defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Mapping=tex-text, Color=textcolor, ItalicFont=Garamond Premr Pro It, BoldFont=Garamond Premr Pro Smbd]{Garamond Premr Pro}
+\setmainfont[Mapping=tex-text, Color=textcolor, ItalicFont=Garamond Premr Pro It, BoldFont=Garamond Premr Pro Smbd, Numbers=OldStyle]{Garamond Premr Pro}
 \setmonofont[Mapping=tex-text, ItalicFont=Garamond Premr Pro It, BoldFont=Garamond Premr Pro Smbd]{Garamond Premr Pro}
 
 %% \setmathfont{XITS Math}
