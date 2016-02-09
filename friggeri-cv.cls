@@ -8,7 +8,6 @@
 \ProcessOptions\relax
 \LoadClass{article}
 
-
 %%%%%%%%%%
 % Colors %
 %%%%%%%%%%
@@ -93,7 +92,6 @@
   \vspace{2.5cm}
   \vspace{-2\parskip}
 }
-
 
 %%%%%%%%%%%%%
 % Structure %
@@ -292,8 +290,6 @@
   \sort[direction=descending]{\field{year}}
   \sort[direction=descending]{\field{month}}
 }
-
-
 
 %%%%%%%%%%%%%%%%
 % Other tweaks %
