@@ -20,19 +20,26 @@
 \definecolor{darkgray}{HTML}{333333}
 \definecolor{gray}{HTML}{4D4D4D}
 \definecolor{lightgray}{HTML}{999999}
+\definecolor{lightgreen}{HTML}{2A6E0B}
+\definecolor{black}{HTML}{000000}
 
 \definecolor{green}{HTML}{C2E15F}
 \definecolor{orange}{HTML}{FDA333}
 \definecolor{purple}{HTML}{D3A4F9}
 \definecolor{red}{HTML}{FB4485}
 \definecolor{blue}{HTML}{6CE0F1}
+\definecolor{yellow}{HTML}{F3F781}
+\definecolor{pink}{HTML}{FF99CC}
 
 \ifdefined\@cv@print
   \colorlet{green}{gray}
   \colorlet{orange}{gray}
   \colorlet{purple}{gray}
   \colorlet{red}{gray}
+  \colorlet{red}{gray}
   \colorlet{blue}{gray}
+  \colorlet{yellow}{gray}
+  \colorlet{pink}{gray}
   \colorlet{fillheader}{white}
   \colorlet{header}{gray}
 \else
@@ -49,6 +56,7 @@
 \RequirePackage[quiet]{fontspec}
 \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 
+\newfontfamily\resultfont[]{Verdana}
 \newfontfamily\bodyfont[]{Helvetica Neue}
 \newfontfamily\thinfont[]{Helvetica Neue UltraLight}
 \newfontfamily\headingfont[]{Helvetica Neue Condensed Bold}
@@ -101,7 +109,9 @@
         red\or%
         orange\or%
         green\or%
-        purple\else%
+        purple\or%
+        yellow\or%
+        pink\else%
         headercolor\fi%
     } #1#2#3%
   }%
@@ -109,7 +119,6 @@
 }
 
 \renewcommand{\section}[1]{
-  \par\vspace{\parskip}
   {%
     \LARGE\headingfont\color{headercolor}%
     \@sectioncolor #1%
@@ -137,8 +146,17 @@
   \end{tabular*}
 }
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
+\newcommand{\bigentry}[5]{%
+  #1&\parbox[t]{11.6cm}{%
+    \textbf{#2}%
+    \hfill%
+    {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
+    { #4}\vspace{\parsep}\\%
+    {\footnotesize\resultfont\addfontfeature{Color=black}#5}\vspace{\parsep}%
+  }\\}
+\renewcommand{\bfseries}{\headingfont\color{headercolor}}
 \newcommand{\entry}[4]{%
-  #1&\parbox[t]{11.8cm}{%
+  #1&\parbox[t]{11.6cm}{%
     \textbf{#2}%
     \hfill%
     {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
@@ -151,14 +169,14 @@
 %%%%%%%%%%%%%%
 
 \RequirePackage[absolute,overlay]{textpos}
-\setlength{\TPHorizModule}{1cm}
+\setlength{\TPHorizModule}{0.9cm}
 \setlength{\TPVertModule}{1cm}
 \newenvironment{aside}{%
   \let\oldsection\section
   \renewcommand{\section}[1]{
     \par\vspace{\baselineskip}{\Large\headingfont\color{headercolor} ##1}
   }
-  \begin{textblock}{3.6}(1.5, 4.33)
+  \begin{textblock}{4.6}(1.5, 4.33)
   \begin{flushright}
   \obeycr
 }{%
